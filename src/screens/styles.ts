@@ -19,13 +19,6 @@ export const Header = styled.View`
   flex-direction: row;
 `;
 
-export const Title = styled.Text`
-  font-family: ${(props) => props.theme.fonts.bold};
-  font-size: 24px;
-  font-weight: bold;
-  color: purple;
-`;
-
 export const UserWrapper = styled.View`
   width: 100%;
   padding: 0 24px;
@@ -79,4 +72,17 @@ export const HighlightCards = styled.ScrollView.attrs({
   width: 100%;
   position: absolute;
   margin-top: ${RFPercentage(20)}px;
+`;
+
+export const Transactions = styled.View`
+  flex: 1%;
+  padding: 0 24px;
+  margin-top: ${RFPercentage(16)}px;
+`;
+
+export const Title = styled.Text`
+  font-family: ${(props) => props.theme.fonts.regular};
+  font-size: ${RFValue(18)}px;
+  color: ${(props) => props.theme.colors.text_dark};
+  margin-bottom: 16px;
 `;

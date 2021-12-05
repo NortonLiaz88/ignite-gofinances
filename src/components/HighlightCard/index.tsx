@@ -1,27 +1,39 @@
 import React from "react";
-import { 
-    Container,
-    Heaeder,
-    Title,
-    Icon,
-    Footer,
-    Amount,
-    LastTransaction
+import {
+  Container,
+  Heaeder,
+  Title,
+  Icon,
+  Footer,
+  Amount,
+  LastTransaction,
 } from "./styles";
 
+interface Props {
+  type: "up" | "down" | "total";
+  title: string;
+  amount: string;
+  lastTransaction: string;
+}
 
-export function HighLightCard() {
-    return (
-        <Container>
-            <Heaeder>
-                <Title>Entrada</Title>
-                <Icon name="arrow-up-circle"></Icon>
-            </Heaeder>
+const icon = {
+  up: "arrow-up-circle",
+  down: "arrow-down-circle",
+  total: "dollar-sign",
+};
 
-            <Footer>
-                <Amount>R$ 17.400,00</Amount>
-                <LastTransaction>Última entrada dia 13 de abril</LastTransaction>
-            </Footer>
-        </Container>
-    )
+export function HighLightCard({ type, title, amount, lastTransaction }: Props) {
+  return (
+    <Container type={type}>
+      <Heaeder>
+        <Title type={type}>{title}</Title>
+        <Icon name={icon[type]} type={type}></Icon>
+      </Heaeder>
+
+      <Footer>
+        <Amount type={type}>{amount}</Amount>
+        <LastTransaction type={type}>{lastTransaction}</LastTransaction>
+      </Footer>
+    </Container>
+  );
 }
