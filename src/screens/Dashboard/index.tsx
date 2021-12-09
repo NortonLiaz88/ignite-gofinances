@@ -12,15 +12,59 @@ import {
   Icon,
   HighlightCards,
   Transactions,
-  Title
+  Title,
+  TransactionsList,
 } from "./styles";
 
 import { RFValue } from "react-native-responsive-fontsize";
 import { Feather } from "@expo/vector-icons";
-import { HighLightCard } from "../components/HighlightCard";
-import { TransactionCard } from "../components/TransactionCard";
+import { HighLightCard } from "../../components/HighlightCard";
+import {
+  TransactionCard,
+  TransactionCardProps,
+} from "../../components/TransactionCard";
+import { getBottomSpace } from "react-native-iphone-x-helper";
+
+export interface DataListProps extends TransactionCardProps {
+  id: string;
+}
 
 export function Dashboard() {
+  const data: DataListProps[] = [
+    {
+      id: "1",
+      type: "positive",
+      title: "Desenvolvimento de site",
+      amount: "R$ 12.000,00",
+      category: {
+        name: "Vendas",
+        icon: "dollar-sign",
+      },
+      date: "13/04/2020",
+    },
+    {
+      id: "2",
+      type: "negative",
+      title: "Hamburburgueria Pizzy",
+      amount: "R$ 59,00",
+      category: {
+        name: "Alimentação",
+        icon: "coffee",
+      },
+      date: "10/04/2020",
+    },
+    {
+      id: "3",
+      type: "negative",
+      title: "Aluguel do apartamento",
+      amount: "R$ 1.200,00",
+      category: {
+        name: "Casa",
+        icon: "dollar-sign",
+      },
+      date: "13/04/2020",
+    },
+  ];
   return (
     <Container>
       <Header>
@@ -49,7 +93,7 @@ export function Dashboard() {
         <HighLightCard
           type="down"
           title="Saídas"
-          amount="R$ R$ 1.259,00"
+          amount="R$ 1.259,00"
           lastTransaction="Última saída dia 03 de abril"
         ></HighLightCard>
         <HighLightCard
@@ -61,7 +105,11 @@ export function Dashboard() {
       </HighlightCards>
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionCard />
+        <TransactionsList
+          data={data}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => <TransactionCard data={item} />}
+        />
       </Transactions>
     </Container>
   );
