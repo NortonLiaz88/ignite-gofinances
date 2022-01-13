@@ -32,6 +32,7 @@ export const Footer = styled.View`
 `;
 export const Category = styled.Text`
   flex-direction: row;
+  flex: 1;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
 `;
@@ -40,6 +41,7 @@ export const Icon = styled(Feather)`
   margin-right: 17px;
 `;
 export const CategoryName = styled.Text`
+  margin-left: 17px;
   font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.colors.text};
 `;
