@@ -22,6 +22,7 @@ import {
 } from "./styles";
 import { CategorySelect } from "../CategorySelect";
 import { InputForm } from "../../components/InputForm";
+import { useAuth } from "../../hooks/auth";
 
 const schema = Yup.object().shape({
   name: Yup.string().required("Nome é obrigatório"),
@@ -32,7 +33,8 @@ const schema = Yup.object().shape({
 });
 
 export function Register() {
-  const dataKey = '@gofinances:transactions';
+  
+  
   const [category, setCategory] = useState({
     key: "category",
     name: "Category",
@@ -40,7 +42,9 @@ export function Register() {
   });
   const [categoryOpenModal, setCategoryOpenModal] = useState(false);
   const [transactionType, setTransactionType] = useState("");
+  const {user} = useAuth();
 
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
   const navigation = useNavigation();
 
   const {
